@@ -8,7 +8,7 @@ if [ ! -f index.php ]; then
     wp core download --allow-root
 fi
 
-if ! wp config path --allow-root >/dev/null 2>&1; then
+if [ ! -f /var/www/html/wp-config.php ]; then
     wp config create \
         --dbname="$MYSQL_DATABASE" \
         --dbuser="$MYSQL_USER" \
