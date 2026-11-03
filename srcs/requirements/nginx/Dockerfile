@@ -1,15 +1,13 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update && \
     apt-get install -y nginx openssl && \
-    apt-get clean && \
+    mkdir -p /etc/nginx/ssl && \
     rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /etc/nginx/ssl
-
-COPY conf/server.crt /etc/nginx/ssl/server.crt
-COPY conf/server.key /etc/nginx/ssl/server.key
-
 COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY tools/init.sh /usr/local/bin/init.sh
 
-CMD ["nginx", "-g", "daemon off;"]
+RUN chmod +x /usr/local/bin/init.sh
+
+CMD ["/usr/local/bin/init.sh"]

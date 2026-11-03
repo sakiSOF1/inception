@@ -17,6 +17,8 @@ clean: down
 fclean: down
 	docker volume rm srcs_mariadb_data srcs_wordpress_data 2>/dev/null || true
 	docker image rm mariadb wordpress nginx 2>/dev/null || true
+	sudo rm -rf /home/$(LOGNAME)/data/mariadb/*
+	sudo rm -rf /home/$(LOGNAME)/data/wordpress/*
 	docker system prune -af
 
 re: fclean all

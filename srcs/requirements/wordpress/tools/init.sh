@@ -41,4 +41,4 @@ fi
 
 mkdir -p /run/php
 
-exec php-fpm7.4 -F
+exec php-fpm8.2 -F
