@@ -22,32 +22,10 @@ backed by `/home/sessaki/data/` on the host.
 
 ## Architecture
 
-``` text
-                    HTTPS :443
-                         |
-                         v
-                  +-------------+
-                  |    NGINX    |
-                  |  TLS/SSL    |
-                  +------+------+ 
-                         |
-                    FastCGI :9000
-                         |
-                         v
-                  +-------------+
-                  |  WordPress  |
-                  |  PHP-FPM    |
-                  +------+------+ 
-                         |
-                     MySQL :3306
-                         |
-                         v
-                  +-------------+
-                  |   MariaDB   |
-                  +-------------+
+The infrastructure consists of three isolated services
+connected through a dedicated Docker bridge network.
 
-          All services share a Docker network.
-```
+![Inception Architecture](assets/inception.png)
 
 ## Docker and main design choices
 
